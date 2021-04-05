@@ -1,22 +1,25 @@
 const result = '';
-const para = document.querySelector('p');
+const para = document.querySelector('.userChoice');
 const para2 = document.querySelector('.pcChoice');
 const choices = ['rock', 'paper', 'scissors'];
 const para3 = document.querySelector('.results');
 const para4 = document.querySelector('.rounds');
-const userChoice = ''
+
 
 // Ask user how many rounds they want to play
 let rounds = prompt('How many rounds are we playing to?', 1);
 
 // Generates a random choice for the pc from the list of choices
- function pcChooses(choices) {
+ function getPcChoice(choices) {
      return choices[Math.floor(Math.random() * choices.length)];
  }
 
  function getUserChoice() {
-    return prompt('Please enter your choice between rock, paper or scissors');
+     let userChoice = prompt('Please enter your choice between rock, paper or scissors', '');
+    return userChoice
  }
+
+
 
 // Compares the users choice with the pc's choice and updates the results variable
 function compareChoices(userChoice, pcChoice) {
@@ -48,7 +51,7 @@ function game(rounds){
     userChoice = userChoice.toLowerCase();
 
     // Stores the pc's choice in a variable
-    pcChoice = pcChooses(choices);
+    pcChoice = getPcChoice(choices);
 
     // Updates the <p> element with the players choices
     para.textContent = `You chose ${userChoice}.`;
