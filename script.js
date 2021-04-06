@@ -4,6 +4,7 @@ const para2 = document.querySelector('.pcChoice');
 const choices = ['rock', 'paper', 'scissors'];
 const para3 = document.querySelector('.results');
 const para4 = document.querySelector('.rounds');
+const para5 = document.querySelector('.scoreTally')
 
 
 // Ask user how many rounds they want to play
@@ -59,6 +60,31 @@ function game(rounds){
 
     //Print the winner
     para3.textContent = `You ${compareChoices(userChoice, pcChoice)} this round.`
+
+    return compareChoices(userChoice, pcChoice)
 }
 
-game(rounds)
+let gameResult = game(rounds)
+
+let winCount = 0;
+let drawCount = 0;
+let lossCount = 0;
+
+for (let i=1; i <= rounds; i++, game(rounds)) {
+    let gamesPlayed = i;
+    console.log(gamesPlayed);
+    console.log(gameResult)
+    scoreCount(gameResult)
+    para5.textContent = `win count is ${winCount}, draw count is ${drawCount} and loss count is ${lossCount}`;
+}
+
+function scoreCount(gameResult) {
+ //count wins
+ if (gameResult === 'win') {
+     return winCount += 1;
+ } else if (gameResult === 'lose') {
+     return lossCount += 1;
+ } else if (gameResult === 'draw'){
+     return drawCount += 1;
+ }
+}
